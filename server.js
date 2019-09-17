@@ -1,22 +1,7 @@
-const express = require('express')
-const app = express()
+'use strict'
 
-app.get('/', (req, res) => {
-    res.status(200).send('Olá Mundão!')
-})
+const app = require('./bin/express')
+const variables = require('./bin/configuration/variables')
 
-app.post('/', (req, res) => {
-    res.status(201).send('Criado')
-})
-
-app.put('/', (req, res) => {
-    res.status(202).send('Atualizado')
-})
-
-app.delete('', (req, res) => {
-    res.status(204).send('Excluído')
-})
-
-app.listen(3000, () => {
-    console.log('Servidor API iniciado na porta 3000.')
-})
+const port = variables.Api.port
+app.listen(port, ()=> console.log(`API inicializada na porta ${port}`))
