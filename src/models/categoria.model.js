@@ -3,7 +3,9 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
-const trim, index, required = true
+const trim = true, 
+    index = true, 
+    required = true
 
 const categoriaModel = new schema({
     titulo: { trim, index, required, type: String },
@@ -14,10 +16,10 @@ const categoriaModel = new schema({
 }, {versionKey: false})
 
 categoriaModel.pre('save', next => {
-    let now = new Date()
-
     if(!this.dataCriacao) 
-        this.dataCriacao = now
+        this.dataCriacao = new Date()
         
     next()
 })
+
+module.exports = mongoose.model('Categoria', categoriaModel)
